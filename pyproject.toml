@@ -1,0 +1,22 @@
+[project]
+name = "textguardai"
+version = "0.1.0"
+description = "End-to-end NLP pipeline for SMS spam detection using classical ML, embeddings, LSTM, and BERT with Flask deployment."
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "pandas==2.3.1",
+    "numpy==2.3.2",
+    "scikit-learn==1.7.1",
+    "matplotlib==3.10.5",
+    "nltk==3.9.1",
+    "gensim==4.3.3",
+    "flask==3.1.1",
+    "joblib==1.5.1",
+    "transformers==4.55.2",
+    "torch==2.8.0",
+    "tensorflow==2.20.0",
+    "keras==3.11.2",
+    "tqdm==4.67.1",
+]
