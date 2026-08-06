@@ -1,5 +1,16 @@
 import pandas as pd
+import re
+import string
+import nltk
 
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+nltk.download("punkt")
+nltk.download("stopwords")
+nltk.download("wordnet")
+nltk.download("omw-1.4")
 df=pd.read_csv("data/raw/spam.csv",encoding='latin-1')   #As dataset contains some special characters it would throw UnicodeDecodeError
 print(df.head())
 
