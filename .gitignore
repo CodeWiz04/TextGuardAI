@@ -1,0 +1,108 @@
+# ----------------------------
+# Python
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compiled Extensions
+*.so
+
+# ----------------------------
+# Virtual Environment
+# ----------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# ----------------------------
+# Distribution / Packaging
+# ----------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# ----------------------------
+# Unit Test / Coverage
+# ----------------------------
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# ----------------------------
+# Jupyter Notebooks
+# ----------------------------
+.ipynb_checkpoints/
+
+# ----------------------------
+# IDEs
+# ----------------------------
+.vscode/
+.idea/
+
+# ----------------------------
+# Operating System Files
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Environment Variables
+# ----------------------------
+.env
+.env.*
+!.env.example
+
+# ----------------------------
+# Logs
+# ----------------------------
+*.log
+
+# ----------------------------
+# Python Cache
+# ----------------------------
+.mypy_cache/
+.ruff_cache/
+
+# ----------------------------
+# ML Models
+# ----------------------------
+models/*.joblib
+models/*.pkl
+models/*.h5
+models/*.keras
+models/*.pt
+models/*.pth
+
+# Keep the folder
+!models/.gitkeep
+
+# ----------------------------
+# Dataset
+# ----------------------------
+data/processed/*
+!data/processed/.gitkeep
+
+# Ignore raw dataset only if it is large.
+,
+
+data/raw/*
+!data/raw/.gitkeep
+
+# ----------------------------
+# Reports
+# ----------------------------
+reports/*.pdf
+
+# ----------------------------
+# Temporary Files
+# ----------------------------
+*.tmp
+*.bak
+*.swp
