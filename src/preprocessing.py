@@ -39,3 +39,8 @@ print(df["character_count"].describe())
 print(df["word_count"].describe())
 
 
+#Creating reusable objects
+stop_words=set(stopwords.words("english"))
+lemmatizer=WordNetLemmatizer()
+
+
