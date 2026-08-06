@@ -1,108 +1,31 @@
-# ----------------------------
+# Virtual Environment
+.venv/
+
 # Python
-# ----------------------------
 __pycache__/
 *.py[cod]
-*$py.class
+*.pyo
+src/textguardai.egg-info/
 
-# Compiled Extensions
-*.so
-
-# ----------------------------
-# Virtual Environment
-# ----------------------------
-.venv/
-venv/
-env/
-ENV/
-
-# ----------------------------
-# Distribution / Packaging
-# ----------------------------
-build/
-dist/
-*.egg-info/
-.eggs/
-pip-wheel-metadata/
-
-# ----------------------------
-# Unit Test / Coverage
-# ----------------------------
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-.tox/
-.nox/
-
-# ----------------------------
-# Jupyter Notebooks
-# ----------------------------
+# Jupyter
 .ipynb_checkpoints/
 
-# ----------------------------
-# IDEs
-# ----------------------------
-.vscode/
-.idea/
+# Models
+models/*.joblib
 
-# ----------------------------
-# Operating System Files
-# ----------------------------
+# Dataset
+data/raw/
+data/processed/
+
+# Reports
+reports/*.pdf
+
+# OS
 .DS_Store
 Thumbs.db
 
-# ----------------------------
-# Environment Variables
-# ----------------------------
-.env
-.env.*
-!.env.example
+# VS Code
+.vscode/
 
-# ----------------------------
 # Logs
-# ----------------------------
 *.log
-
-# ----------------------------
-# Python Cache
-# ----------------------------
-.mypy_cache/
-.ruff_cache/
-
-# ----------------------------
-# ML Models
-# ----------------------------
-models/*.joblib
-models/*.pkl
-models/*.h5
-models/*.keras
-models/*.pt
-models/*.pth
-
-# Keep the folder
-!models/.gitkeep
-
-# ----------------------------
-# Dataset
-# ----------------------------
-data/processed/*
-!data/processed/.gitkeep
-
-# Ignore raw dataset only if it is large.
-,
-
-data/raw/*
-!data/raw/.gitkeep
-
-# ----------------------------
-# Reports
-# ----------------------------
-reports/*.pdf
-
-# ----------------------------
-# Temporary Files
-# ----------------------------
-*.tmp
-*.bak
-*.swp
