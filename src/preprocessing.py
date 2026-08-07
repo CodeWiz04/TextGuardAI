@@ -56,6 +56,8 @@ def clean_text(message):
     cleaned_tokens=[
         lemmatizer.lemmatize(token) for token in tokens if token not in stop_words
     ]
+    if not cleaned_tokens:
+        return "empty"
     #join back into a sentence
     return " ".join(cleaned_tokens)
 
@@ -64,6 +66,7 @@ df[["message", "clean_message"]].head(10)
 
 #Save the cleaned data to a new CSV file
 os.makedirs("data/processed",exist_ok=True)
+
 df.to_csv(
     "data/processed/cleaned_spam.csv",
     index=False
