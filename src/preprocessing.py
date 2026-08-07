@@ -43,4 +43,20 @@ print(df["word_count"].describe())
 stop_words=set(stopwords.words("english"))
 lemmatizer=WordNetLemmatizer()   #lexical database giving base form,synonyms,POS etc
 
+def clean_text(message):
+    #Lowercase
+    message=message.lower()
+
+    #Remove Punctuation
+    message=message.translate(str.maketrans("","",string.punctuation))
+    #Tokenize
+    tokens=word_tokenize(message)
+    #Remove stop_words and lemmatize
+    cleaned_tokens=[
+        lemmatizer.lemmatize(token) for token in tokens if token not in stop_words
+    ]
+    #join back into a sentence
+    return " ".join(cleaned_tokens)
+    
+
 
