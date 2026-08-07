@@ -1,4 +1,6 @@
 import pandas as pd
+import joblib
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
 
@@ -29,3 +31,22 @@ print("TF-IDF Test :", X_test_tfidf.shape)
 
 print("BoW Train:", X_train_bow.shape)
 print("BoW Test :", X_test_bow.shape)
+
+os.makedirs("models", exist_ok=True)
+# Save TF-IDF features
+joblib.dump(X_train_tfidf, "data/processed/X_train_tfidf.pkl")
+joblib.dump(X_test_tfidf, "data/processed/X_test_tfidf.pkl")
+
+# Save BoW features
+joblib.dump(X_train_bow, "data/processed/X_train_bow.pkl")
+joblib.dump(X_test_bow, "data/processed/X_test_bow.pkl")
+
+# Save labels
+joblib.dump(y_train, "data/processed/y_train.pkl")
+joblib.dump(y_test, "data/processed/y_test.pkl")
+
+# Save vectorizers
+joblib.dump(tfidf, "models/tfidf_vectorizer.pkl")
+joblib.dump(bow, "models/bow_vectorizer.pkl")
+
+print("\nAll features and vectorizers saved successfully.")

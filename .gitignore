@@ -11,7 +11,7 @@ src/textguardai.egg-info/
 .ipynb_checkpoints/
 
 # Models
-models/*.joblib
+models/
 
 # Dataset
 data/raw/
