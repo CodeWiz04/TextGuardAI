@@ -41,6 +41,6 @@ print(df["word_count"].describe())
 
 #Creating reusable objects
 stop_words=set(stopwords.words("english"))
-lemmatizer=WordNetLemmatizer()
+lemmatizer=WordNetLemmatizer()   #lexical database giving base form,synonyms,POS etc
 
 
