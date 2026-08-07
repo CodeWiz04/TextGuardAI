@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import os
 import string
 import nltk
 
@@ -57,6 +58,13 @@ def clean_text(message):
     ]
     #join back into a sentence
     return " ".join(cleaned_tokens)
-    
 
+df["clean_message"] = df["message"].apply(clean_text)
+df[["message", "clean_message"]].head(10)
 
+#Save the cleaned data to a new CSV file
+os.makedirs("data/processed",exist_ok=True)
+df.to_csv(
+    "data/processed/cleaned_spam.csv",
+    index=False
+)
