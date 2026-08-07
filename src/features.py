@@ -1,6 +1,8 @@
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
 
+df = pd.read_csv("data/processed/cleaned_spam.csv")
 #Split the data
 X=df['clean_message']
 y=df['label']
