@@ -49,12 +49,12 @@ joblib.dump(nb_model, "models/naive_bayes.pkl")
 # 2. Linear SVM
 # ======================================================
 
-svm_model=LinearSVM(class_weight="balanced",random_state=42)
+svm_model=LinearSVC(class_weight="balanced",random_state=42)
 svm_model.fit(X_train_tfidf, y_train)
 svm_predictions=svm_model.predict(X_test_tfidf)
 print("\n")
 print("=" * 60)
-print("LINEAR SVM")
+print("LINEAR SVC")
 print("=" * 60)
 
 print(f"Accuracy: {accuracy_score(y_test, svm_predictions):.4f}\n")
