@@ -49,9 +49,9 @@ joblib.dump(nb_model, "models/naive_bayes.pkl")
 # 2. Linear SVM
 # ======================================================
 
-svm_model=LinearSVC(class_weight="balanced",random_state=42)
-svm_model.fit(X_train_tfidf, y_train)
-svm_predictions=svm_model.predict(X_test_tfidf)
+svm_model=LinearSVC(class_weight="balanced",random_state=42)   #Creates a linear SVM classifier with balanced class weights to handle class imbalance and a fixed random state for reproducibility
+svm_model.fit(X_train_tfidf, y_train)                          #tries to find the best weight and bias on which the margain between two categories is maximized. It learns the hyperplane that best separates the classes in the feature space
+svm_predictions=svm_model.predict(X_test_tfidf)                #Classify the unseen messages 
 print("\n")
 print("=" * 60)
 print("LINEAR SVC")
