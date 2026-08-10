@@ -17,15 +17,30 @@ from sklearn.metrics import (
     confusion_matrix,
 )
 
-df = pd.read_csv("data/processed/cleaned_spam.csv")
+# ----------------------------
+# Load saved artifacts
+# ----------------------------
+X_train_tfidf = joblib.load("models/X_train_tfidf.pkl")
+X_test_tfidf = joblib.load("models/X_test_tfidf.pkl")
+y_train = joblib.load("models/y_train.pkl")
+y_test = joblib.load("models/y_test.pkl")
 
-X = df["clean_message"]
-y = df["label"]
+os.makedirs("models", exist_ok=True)
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.2,
-    random_state=42,
-    stratify=y,
-)
+nb_model=MultinomialNB()
+nb_model.fit(X_train_tfidf, y_train)
+nb_predictions=nb_model.predict(X_test_tfidf)
+
+print("=" * 60)
+print("MULTINOMIAL NAIVE BAYES")
+print("=" * 60)
+
+print(f"Accuracy: {accuracy_score(y_test, nb_predictions):.4f}\n")
+
+print("Classification Report")
+print(classification_report(y_test, nb_predictions))
+
+print("Confusion Matrix")
+print(confusion_matrix(y_test, nb_predictions))
+
+joblib.dump(nb_model, "models/naive_bayes.pkl")
