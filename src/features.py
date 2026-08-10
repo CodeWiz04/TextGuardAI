@@ -45,6 +45,15 @@ joblib.dump(X_test_bow, "data/processed/X_test_bow.pkl")
 joblib.dump(y_train, "data/processed/y_train.pkl")
 joblib.dump(y_test, "data/processed/y_test.pkl")
 
+joblib.dump(X_train_tfidf, "models/X_train_tfidf.pkl")
+joblib.dump(X_test_tfidf, "models/X_test_tfidf.pkl")
+
+joblib.dump(X_train_bow, "models/X_train_bow.pkl")
+joblib.dump(X_test_bow, "models/X_test_bow.pkl")
+
+joblib.dump(y_train, "models/y_train.pkl")
+joblib.dump(y_test, "models/y_test.pkl")
+
 # Save vectorizers
 joblib.dump(tfidf, "models/tfidf_vectorizer.pkl")
 joblib.dump(bow, "models/bow_vectorizer.pkl")
