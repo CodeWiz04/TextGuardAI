@@ -27,7 +27,7 @@ y_test = joblib.load("models/y_test.pkl")
 
 os.makedirs("models", exist_ok=True)
 
-nb_model=MultinomialNB()
+nb_model=MultinomialNB()                      #probabilistic model for classification, uses bayes theorem in backend e.g. P(message|spam)=P(free|spam)*P(prize|winner)*P(winner|spam)
 nb_model.fit(X_train_tfidf, y_train)
 nb_predictions=nb_model.predict(X_test_tfidf)
 
