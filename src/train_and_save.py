@@ -28,8 +28,8 @@ y_test = joblib.load("models/y_test.pkl")
 os.makedirs("models", exist_ok=True)
 
 nb_model=MultinomialNB()                      #probabilistic model for classification, uses bayes theorem in backend e.g. P(message|spam)=P(free|spam)*P(prize|winner)*P(winner|spam)
-nb_model.fit(X_train_tfidf, y_train)
-nb_predictions=nb_model.predict(X_test_tfidf)
+nb_model.fit(X_train_tfidf, y_train)          #it learns the prior prob probabilities of each class and the likelihood of each feature given the class
+nb_predictions=nb_model.predict(X_test_tfidf) #Computes P(spam|message) and P(ham|message) and predicts the class with the higher probability
 
 print("=" * 60)
 print("MULTINOMIAL NAIVE BAYES")
