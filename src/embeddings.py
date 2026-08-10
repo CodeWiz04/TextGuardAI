@@ -8,7 +8,7 @@ y_train = joblib.load("models/y_train.pkl")
 y_test = joblib.load("models/y_test.pkl")
 
 def load_glove(path):
-    embeddings={}r
+    embeddings={}
     with open(path,'r',encoding='utf-8') as f:  #encoding='utf-8' tells how the bytes in the file should be interpreted as characters 
         for line in f:
             values=line.split() 
