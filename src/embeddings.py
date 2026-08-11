@@ -1,27 +1,62 @@
 import joblib
 import numpy as np
+import pandas as pd
 
-# Load train/test data from Step 4
-X_train = joblib.load("models/X_train.pkl")
-X_test = joblib.load("models/X_test.pkl")
-y_train = joblib.load("models/y_train.pkl")
-y_test = joblib.load("models/y_test.pkl")
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import classification_report, accuracy_score
+
+
+# --------------------------------------------------
+# 1. Load the original cleaned text dataset
+# --------------------------------------------------
+
+df = pd.read_csv("data/processed/cleaned_spam.csv")
+
+X = df["clean_message"]
+y = df["label"]
+
+
+# --------------------------------------------------
+# 2. Create the SAME train/test split as Step 4
+# --------------------------------------------------
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
+
+
+# --------------------------------------------------
+# 3. Load GloVe embeddings
+# --------------------------------------------------
 
 def load_glove(path):
-    embeddings={}
-    with open(path,'r',encoding='utf-8') as f:  #encoding='utf-8' tells how the bytes in the file should be interpreted as characters 
+
+    embeddings = {}
+
+    with open(path, "r", encoding="utf-8") as f:
+
         for line in f:
-            values=line.split() 
-            word=values[0]                        #extract word
-            vector=np.asarray(values[1:],'float32')#extract vector and convert to numpy array of type float32
-            embeddings[word]=vector                #insert a dictionary entry with the word as key and the vector as value
+
+            values = line.split()
+
+            word = values[0]
+
+            vector = np.asarray(
+                values[1:],
+                dtype="float32"
+            )
+
+            embeddings[word] = vector
+
+    return embeddings
 
 
 glove = load_glove("embeddings/glove.6B.100d.txt")
 
-joblib.dump(glove, "models/glove_embeddings.pkl")
-
-print("GloVe embeddings saved.")
-print("Vocabulary size:", len(glove))
-
-
+print("GloVe vocabulary size:", len(glove))
