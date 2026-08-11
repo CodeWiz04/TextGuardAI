@@ -5,7 +5,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report, accuracy_score,precision_score, recall_score, f1_score
+
 
 
 # --------------------------------------------------
@@ -119,3 +120,50 @@ nb_model.fit(
 
 glove_predictions = nb_model.predict(X_test_glove)
 
+# --------------------------------------------------
+# 9. Evaluate
+# --------------------------------------------------
+
+print("\n" + "=" * 60)
+print("GLOVE + MULTINOMIAL NAIVE BAYES")
+print("=" * 60)
+
+print(
+    f"Accuracy: "
+    f"{accuracy_score(y_test, glove_predictions):.4f}"
+)
+
+print("\nClassification Report:")
+
+print(
+    classification_report(
+        y_test,
+        glove_predictions
+    )
+)
+
+joblib.dump(
+    glove,
+    "models/glove_embeddings.pkl"
+)
+
+joblib.dump(
+    scaler,
+    "models/glove_scaler.pkl"
+)
+
+joblib.dump(
+    nb_model,
+    "models/glove_naive_bayes.pkl"
+)
+
+joblib.dump(
+    X_train_glove,
+    "models/X_train_glove.pkl"
+)
+
+joblib.dump(
+    X_test_glove,
+    "models/X_test_glove.pkl"
+)
+print("\nStep 5 models and embeddings saved successfully.")
