@@ -96,11 +96,11 @@ print("X_test GloVe shape:", X_test_glove.shape)
 # 6. Make GloVe values non-negative
 # --------------------------------------------------
 
-scaler = MinMaxScaler()
+scaler = MinMaxScaler()    #shifts the values in the range of [0,1]   x`=(x-xmin)/(xmax-xmin)
 
-X_train_glove = scaler.fit_transform(X_train_glove)
+X_train_glove = scaler.fit_transform(X_train_glove)  #finds max and min of all 100-dim vectors
 
-X_test_glove = scaler.transform(X_test_glove)
+X_test_glove = scaler.transform(X_test_glove)        #Uses those values to convert the training vectors into the [0, 1] range.
 
 
 # --------------------------------------------------
@@ -232,8 +232,8 @@ comparison = pd.DataFrame({
         f1_score(
             y_test,
             tfidf_predictions,
-            pos_label="spam",
-            zero_division=0
+            pos_label="spam",    #taking spam as positive class(out of all the predicted spams,how many were actually spam)
+            zero_division=0      #return 0 if 0/0 situation occurs (i.e. if there are no predicted spams)
         ),
         f1_score(
             y_test,
