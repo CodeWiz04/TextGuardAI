@@ -166,4 +166,81 @@ joblib.dump(
     X_test_glove,
     "models/X_test_glove.pkl"
 )
+# Load Step 4 artifacts
+tfidf_vectorizer = joblib.load("models/tfidf_vectorizer.pkl")
+tfidf_model = joblib.load("models/naive_bayes.pkl")
+
+X_test_tfidf = joblib.load("models/X_test_tfidf.pkl")
+y_test = joblib.load("models/y_test.pkl")
+
+# Step 4 predictions
+tfidf_predictions = tfidf_model.predict(X_test_tfidf)
+
+# Step 5 predictions
+glove_model = joblib.load("models/glove_naive_bayes.pkl")
+
+X_test_glove = joblib.load("models/X_test_glove.pkl")
+
+glove_predictions = glove_model.predict(X_test_glove)
+
+# --------------------------------------------------
+# Calculate metrics
+# --------------------------------------------------
+
+comparison = pd.DataFrame({
+    "Model": [
+        "TF-IDF + MultinomialNB",
+        "GloVe + MultinomialNB"
+    ],
+
+    "Accuracy": [
+        accuracy_score(y_test, tfidf_predictions),
+        accuracy_score(y_test, glove_predictions)
+    ],
+
+    "Spam Precision": [
+        precision_score(
+            y_test,
+            tfidf_predictions,
+            pos_label="spam",
+            zero_division=0
+        ),
+        precision_score(
+            y_test,
+            glove_predictions,
+            pos_label="spam",
+            zero_division=0
+        )
+    ],
+
+    "Spam Recall": [
+        recall_score(
+            y_test,
+            tfidf_predictions,
+            pos_label="spam",
+            zero_division=0
+        ),
+        recall_score(
+            y_test,
+            glove_predictions,
+            pos_label="spam",
+            zero_division=0
+        )
+    ],
+
+    "Spam F1": [
+        f1_score(
+            y_test,
+            tfidf_predictions,
+            pos_label="spam",
+            zero_division=0
+        ),
+        f1_score(
+            y_test,
+            glove_predictions,
+            pos_label="spam",
+            zero_division=0
+        )
+    ]
+})
 print("\nStep 5 models and embeddings saved successfully.")
