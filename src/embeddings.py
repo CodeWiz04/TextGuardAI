@@ -73,3 +73,49 @@ def message_to_vector(message,glove,vector_size=100):
         if len(vectors)==0:
             return np.zeros(vector_size)
     return np.mean(vectors,axis=0)
+# --------------------------------------------------
+# 5. Convert all messages into GloVe vectors
+# --------------------------------------------------
+
+X_train_glove = np.array([
+    message_to_vector(message, glove)
+    for message in X_train
+])
+
+X_test_glove = np.array([
+    message_to_vector(message, glove)
+    for message in X_test
+])
+
+
+print("X_train GloVe shape:", X_train_glove.shape)
+print("X_test GloVe shape:", X_test_glove.shape)
+
+# --------------------------------------------------
+# 6. Make GloVe values non-negative
+# --------------------------------------------------
+
+scaler = MinMaxScaler()
+
+X_train_glove = scaler.fit_transform(X_train_glove)
+
+X_test_glove = scaler.transform(X_test_glove)
+
+
+# --------------------------------------------------
+# 7. Train Multinomial Naive Bayes
+# --------------------------------------------------
+
+nb_model = MultinomialNB()
+
+nb_model.fit(
+    X_train_glove,
+    y_train
+)
+
+# --------------------------------------------------
+# 8. Predict test messages
+# --------------------------------------------------
+
+glove_predictions = nb_model.predict(X_test_glove)
+
