@@ -13,3 +13,8 @@ X_train = joblib.load("models/X_train.pkl")
 X_test = joblib.load("models/X_test.pkl")
 y_train = joblib.load("models/y_train.pkl")
 y_test = joblib.load("models/y_test.pkl")
+
+y_train = (y_train == "spam").astype(int)
+y_test = (y_test == "spam").astype(int)
+
+
