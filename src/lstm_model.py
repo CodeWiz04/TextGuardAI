@@ -17,4 +17,13 @@ y_test = joblib.load("models/y_test.pkl")
 y_train = (y_train == "spam").astype(int)
 y_test = (y_test == "spam").astype(int)
 
+tokenizer=Tokenizer(
+    num_words=10000,               #keep 10000 most frequent words
+    oov_token="<OOV>"              #label for out-of-vocabulary words(typically 1 is reserved for unknown words,0 for padding)
+)
+
+tokenizer.fit_on_texts(X_train)    #count the words in the training set and create a word index
+X_train_sequences=tokenizer.texts_to_sequences(X_train) #looks for each word in the dict and gives that particular index
+X_test_sequences=tokenizer.texts_to_sequences(X_test)   #use the knowledge learn from training sets and form vectors
+
 
