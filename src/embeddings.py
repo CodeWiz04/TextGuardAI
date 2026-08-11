@@ -60,3 +60,16 @@ def load_glove(path):
 glove = load_glove("embeddings/glove.6B.100d.txt")
 
 print("GloVe vocabulary size:", len(glove))
+
+# --------------------------------------------------
+# 4. Convert one message into one GloVe vector
+# ----------------------------------------------
+def message_to_vector(message,glove,vector_size=100):
+    words=message.split()
+    vectors=[]
+    for word in words:
+        if word in glove:
+            vectors.append(glove[word])
+        if len(vectors)==0:
+            return np.zeros(vector_size)
+    return np.mean(vectors,axis=0)
