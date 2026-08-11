@@ -243,4 +243,26 @@ comparison = pd.DataFrame({
         )
     ]
 })
+
+print("\n" + "=" * 70)
+print("TF-IDF vs GloVe COMPARISON")
+print("=" * 70)
+
+print(
+    comparison.to_string(
+        index=False,
+        float_format=lambda x: f"{x:.4f}"
+    )
+)
+# --------------------------------------------------
+# Save comparison
+# --------------------------------------------------
+
+comparison.to_csv(
+    "results/tfidf_vs_glove_comparison.csv",
+    index=False
+)
+
+print("\nComparison saved to:")
+print("results/tfidf_vs_glove_comparison.csv")
 print("\nStep 5 models and embeddings saved successfully.")
