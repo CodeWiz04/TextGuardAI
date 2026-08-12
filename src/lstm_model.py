@@ -75,7 +75,7 @@ model=Sequential([            #Layer1->Layer2->Layer3->Layer4(output of one beco
 # Compile
 # --------------------------------------------------
 model.compile(
-    loss="binary_crossentropy",   #calculate loss
+    loss="binary_crossentropy",   #calculate loss  -(ylog(y^)+(1-y)log(1-y^))
     optimizer="adam",             #update weights to minimize loss
     metrics=["accuracy"]          #track accuracy during training and evaluation
 )
@@ -85,8 +85,8 @@ model.compile(
 # --------------------------------------------------
 early_stopping=EarlyStopping( #prevents overfitting by stopping training when the validation loss stops improving
     monitor="val_loss",
-    patience=3,
-    restore_best_weights=True
+    patience=3,               #go upto three more epochs after finding the best model, if the validation loss does not improve, then stop training
+    restore_best_weights=True #restore the model weights from the epoch with the best value of the monitored quantity (val_loss)
 )
 # --------------------------------------------------
 # Train
@@ -94,11 +94,11 @@ early_stopping=EarlyStopping( #prevents overfitting by stopping training when th
 history=model.fit(
     X_train_padded,
     y_train,
-    validation_split=0.2,
-    epochs=10,
-    batch_size=32,
-    callbacks=[early_stopping],
-    verbose=1
+    validation_split=0.2,     #takes 20% of the training data for validation on unseen data
+    epochs=10,                #Train for a maximum of 10 complete passes through the training data.
+    batch_size=32,            #form groups of 32 samples and update the model weights after each batch
+    callbacks=[early_stopping],#at each step it checks val loss,is it improving
+    verbose=1                  #can watch training process throug
 )
 
 # --------------------------------------------------
