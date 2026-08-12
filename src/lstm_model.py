@@ -83,7 +83,7 @@ model.compile(
 # --------------------------------------------------
 # Early stopping
 # --------------------------------------------------
-early_stopping=EarlyStopping(
+early_stopping=EarlyStopping( #prevents overfitting by stopping training when the validation loss stops improving
     monitor="val_loss",
     patience=3,
     restore_best_weights=True
