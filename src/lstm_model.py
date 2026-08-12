@@ -66,18 +66,18 @@ model=Sequential([            #Layer1->Layer2->Layer3->Layer4(output of one beco
     Bidirectional(            #64 units in each direction, so the output will be 128 units
         LSTM(64)
     ),
-    Dropout(0.4),             #During training, randomly deactivate 40% of the incoming units for each training update.
+    Dropout(0.4),             #During training, randomly deactivate 40% of the incoming units for each training update to avoid overfitting
 
-    Dense(1,activation="sigmoid")
+    Dense(1,activation="sigmoid")  #output layer with 1 unit and sigmoid activation function for binary classification
     
 ])
 # --------------------------------------------------
 # Compile
 # --------------------------------------------------
 model.compile(
-    loss="binary_crossentropy",
-    optimizer="adam",
-    metrics=["accuracy"]
+    loss="binary_crossentropy",   #calculate loss
+    optimizer="adam",             #update weights to minimize loss
+    metrics=["accuracy"]          #track accuracy during training and evaluation
 )
 
 # --------------------------------------------------
