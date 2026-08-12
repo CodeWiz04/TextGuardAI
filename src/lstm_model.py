@@ -100,3 +100,13 @@ history=model.fit(
     callbacks=[early_stopping],
     verbose=1
 )
+
+# --------------------------------------------------
+# Predictions
+# --------------------------------------------------
+lstm_probabilities=model.predict(X_test_padded).ravel()  #flatten the array
+lstm_predictions=(lstm_probabilities>0.5).astype(int)  #convert probabilities to binary predictions
+
+# --------------------------------------------------
+# Evaluation
+# --------------------------------------------------
