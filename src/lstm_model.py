@@ -88,3 +88,15 @@ early_stopping=EarlyStopping(
     patience=3,
     restore_best_weights=True
 )
+# --------------------------------------------------
+# Train
+# --------------------------------------------------
+history=model.fit(
+    X_train_padded,
+    y_train,
+    validation_split=0.2,
+    epochs=10,
+    batch_size=32,
+    callbacks=[early_stopping],
+    verbose=1
+)
