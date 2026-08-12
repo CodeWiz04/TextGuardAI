@@ -110,3 +110,31 @@ lstm_predictions=(lstm_probabilities>0.5).astype(int)  #convert probabilities to
 # --------------------------------------------------
 # Evaluation
 # --------------------------------------------------
+accuracy = accuracy_score(
+    y_test,
+    lstm_predictions
+)
+print("\nAccuracy:", round(accuracy, 4))
+
+print("\nClassification Report:")
+
+print(
+    classification_report(
+        y_test,
+        lstm_predictions,
+        target_names=["ham", "spam"],
+        zero_division=0
+    )
+)
+# --------------------------------------------------
+# Save model and tokenizer
+# --------------------------------------------------
+
+model.save("models/lstm_model.keras")
+
+joblib.dump(
+    tokenizer,
+    "models/lstm_tokenizer.pkl"
+)
+
+print("\nLSTM model and tokenizer saved successfully.")
