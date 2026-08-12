@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 df = pd.read_csv("data/processed/cleaned_spam.csv")
 
 X = df["clean_message"]
-y = df["label"]
+y = df["label"].map({"ham": 0, "spam": 1})  # Convert labels to binary format (0 for ham, 1 for spam)
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
