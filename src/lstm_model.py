@@ -59,14 +59,14 @@ print("X_test padded shape:", X_test_padded.shape)
 vocab_size=min(10000, len(tokenizer.word_index)+1)  #how many different integer token IDs it needs to accommodate, while limiting the vocabulary to 10,000.
 
 model=Sequential([            #Layer1->Layer2->Layer3->Layer4(output of one becomes input of other)
-    Embedding(                #atures that the model itself learn
+    Embedding(                #features that the model itself learn
         input_dim=vocab_size, 
         output_dim=100
     ),
-    Bidirectional(
+    Bidirectional(            #64 units in each direction, so the output will be 128 units
         LSTM(64)
     ),
-    Dropout(0.4),
+    Dropout(0.4),             #During training, randomly deactivate 40% of the incoming units for each training update.
 
     Dense(1,activation="sigmoid")
     
