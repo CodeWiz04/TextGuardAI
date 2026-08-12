@@ -56,8 +56,18 @@ print("X_test padded shape:", X_test_padded.shape)
 # Build LSTM model
 # --------------------------------------------------
 
-vocab_size=min(10000, len(tokenizer.word_index)+1)
+vocab_size=min(10000, len(tokenizer.word_index)+1)  #how many different integer token IDs it needs to accommodate, while limiting the vocabulary to 10,000.
 
 model=Sequential([
+    Embedding(
+        input_dim=vocab_size,
+        output_dim=100
+    ),
+    Bidirectional(
+        LSTM(64)
+    ),
+    Dropout(0.4),
+
+    Dense(1,activation="sigmoid")
     
 ])
