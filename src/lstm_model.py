@@ -32,13 +32,13 @@ X_test_sequences=tokenizer.texts_to_sequences(X_test)   #use the knowledge learn
 # --------------------------------------------------
 # Padding
 # --------------------------------------------------
-MAX_LEN=50
+MAX_LEN=50     #each vector can have upto 50 words, if less than 50 words then pad with 0s, if more than 50 words then truncate the extra words
 
 X_train_padded = pad_sequences(
     X_train_sequences,
     maxlen=MAX_LEN,
-    padding="post",
-    truncating="post"
+    padding="post",          #pad 0s at the end of the vector
+    truncating="post"        #truncate the extra words at the end of the vector
 )
 
 X_test_padded = pad_sequences(
@@ -50,3 +50,14 @@ X_test_padded = pad_sequences(
 
 print("X_train padded shape:", X_train_padded.shape)
 print("X_test padded shape:", X_test_padded.shape)
+
+
+# --------------------------------------------------
+# Build LSTM model
+# --------------------------------------------------
+
+vocab_size=min(10000, len(tokenizer.word_index)+1)
+
+model=Sequential([
+    
+])
