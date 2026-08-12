@@ -17,6 +17,9 @@ y_test = joblib.load("models/y_test.pkl")
 y_train = (y_train == "spam").astype(int)
 y_test = (y_test == "spam").astype(int)
 
+# --------------------------------------------------
+# Tokenization
+# --------------------------------------------------
 tokenizer=Tokenizer(
     num_words=10000,               #keep 10000 most frequent words
     oov_token="<OOV>"              #label for out-of-vocabulary words(typically 1 is reserved for unknown words,0 for padding)
@@ -26,4 +29,24 @@ tokenizer.fit_on_texts(X_train)    #count the words in the training set and crea
 X_train_sequences=tokenizer.texts_to_sequences(X_train) #looks for each word in the dict and gives that particular index
 X_test_sequences=tokenizer.texts_to_sequences(X_test)   #use the knowledge learn from training sets and form vectors
 
+# --------------------------------------------------
+# Padding
+# --------------------------------------------------
+MAX_LEN=50
 
+X_train_padded = pad_sequences(
+    X_train_sequences,
+    maxlen=MAX_LEN,
+    padding="post",
+    truncating="post"
+)
+
+X_test_padded = pad_sequences(
+    X_test_sequences,
+    maxlen=MAX_LEN,
+    padding="post",
+    truncating="post"
+)
+
+print("X_train padded shape:", X_train_padded.shape)
+print("X_test padded shape:", X_test_padded.shape)
