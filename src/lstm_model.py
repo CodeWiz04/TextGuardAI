@@ -71,3 +71,20 @@ model=Sequential([
     Dense(1,activation="sigmoid")
     
 ])
+# --------------------------------------------------
+# Compile
+# --------------------------------------------------
+model.compile(
+    loss="binary_crossentropy",
+    optimizer="adam",
+    metrics=["accuracy"]
+)
+
+# --------------------------------------------------
+# Early stopping
+# --------------------------------------------------
+early_stopping=EarlyStopping(
+    monitor="val_loss",
+    patience=3,
+    restore_best_weights=True
+)
