@@ -1,9 +1,5 @@
 # TextGuardAI
-End-to-end NLP pipeline for SMS spam detection using TF-IDF, Word Embeddings, LSTM, and BERT with Flask deployment and comprehensive model benchmarking.
 # SMS Spam Classification — NLP Pipeline + Flask Deployment
-
-NextBridge AI / Machine Learning Track — Summer Internship 2026
-Task 3: NLP — SMS Spam Classification
 
 A full pipeline that takes raw SMS text through preprocessing, feature extraction, five
 different modeling approaches (Naive Bayes, Linear SVM, GloVe embeddings, LSTM,
@@ -14,7 +10,7 @@ fine-tuned DistilBERT), and a Flask web app that serves the best practical model
 ## 1. Project Structure
 
 ```
-nlp-sms-spam-task3/
+TextGuardAI
 ├── data/
 │   ├── raw/                     # spam.csv, untouched
 │   └── processed/               # cleaned dataset + saved feature matrices
@@ -52,7 +48,7 @@ python -m venv .venv
 # macOS / Linux
 source .venv/bin/activate
 
-pip install -r requirements.txt
+pip install -e .
 ```
 
 Dependencies are pinned in `pyproject.toml` / `requirements.txt`. Core libraries: `pandas`,
@@ -101,7 +97,7 @@ Or, to run everything end-to-end (preprocessing → features → classical model
 python main.py
 ```
 
-The DistilBERT fine-tuning step (`transformers_7_completed.ipynb`) is run separately in
+The DistilBERT fine-tuning step is run separately in
 Google Colab (GPU recommended) — see Section 5 below.
 
 Each script prints its own accuracy / classification report and saves its artifacts under
