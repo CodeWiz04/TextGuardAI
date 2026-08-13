@@ -1,5 +1,4 @@
 # TextGuardAI
-# SMS Spam Classification — NLP Pipeline + Flask Deployment
 
 A full pipeline that takes raw SMS text through preprocessing, feature extraction, five
 different modeling approaches (Naive Bayes, Linear SVM, GloVe embeddings, LSTM,
