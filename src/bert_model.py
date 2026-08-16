@@ -11,9 +11,9 @@ from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 from transformers import TrainingArguments, Trainer
 
 import torch
-
-print("CUDA available:", torch.cuda.is_available())
-print("GPU:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
+                                
+print("CUDA available:", torch.cuda.is_available())                                    #returns a flag
+print("GPU:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")   #returns name
 
 !pip install -q transformers datasets accelerate evaluate
 
