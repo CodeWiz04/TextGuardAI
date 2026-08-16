@@ -49,8 +49,8 @@ print("Test samples:", len(X_test))
 
 from transformers import AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained(
-    "distilbert-base-uncased"
+tokenizer = AutoTokenizer.from_pretrained(    #automatically select the correct tokenizer configuration
+    "distilbert-base-uncased"                 #distilled version of bert having base size architecture and doesn't have any distinction between upper and lower case letters (uncased)
 )
 
 text = "Congratulations! You won a free prize."
