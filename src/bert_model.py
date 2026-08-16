@@ -183,8 +183,8 @@ import numpy as np
 predictions_output = trainer.predict(test_tokenized)
 
 # Convert logits to predicted class (0 = ham, 1 = spam)
-y_pred_bert = np.argmax(predictions_output.predictions, axis=-1)
-y_true_bert = predictions_output.label_ids
+y_pred_bert = np.argmax(predictions_output.predictions, axis=-1)   #give max along the column
+y_true_bert = predictions_output.label_ids                         #give actual labels
 
 print("BERT (DistilBERT) Test Set Evaluation")
 print("=" * 50)
