@@ -88,9 +88,9 @@ print(test_dataset)
 def tokenize_function(batch):
     return tokenizer(
         batch["text"],
-        padding="max_length",
-        truncation=True,
-        max_length=128
+        padding="max_length", #each sequence is padded to the maximum length of 128 tokens, ensuring uniform input size for the model
+        truncation=True,      #strip off any tokens that exceed the maximum length of 128 tokens, preventing errors during model training and evaluation
+        max_length=128       
     )
 
 train_tokenized = train_dataset.map(
