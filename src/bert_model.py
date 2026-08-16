@@ -93,7 +93,7 @@ def tokenize_function(batch):
         max_length=128       
     )
 
-train_tokenized = train_dataset.map(
+train_tokenized = train_dataset.map(    #take the batch of train dataset and pass it to the tokenize_function to get the tokenized version of the dataset
     tokenize_function,
     batched=True
 )
@@ -103,19 +103,19 @@ test_tokenized = test_dataset.map(
     batched=True
 )
 
-train_tokenized = train_tokenized.remove_columns(["text"])
+train_tokenized = train_tokenized.remove_columns(["text"])      #as text was converted into inut_ids so no need of text column
 test_tokenized = test_tokenized.remove_columns(["text"])
 
-train_tokenized.set_format("torch")
+train_tokenized.set_format("torch")      #convert input ids and attention mask to pytorch tensors for optimization of mathematical operations
 test_tokenized.set_format("torch")
 
 """Load DistilBERT"""
 
 from transformers import AutoModelForSequenceClassification
 
-model = AutoModelForSequenceClassification.from_pretrained(
-    "distilbert-base-uncased",
-    num_labels=2
+model = AutoModelForSequenceClassification.from_pretrained(   #transformer model designed for classification
+    "distilbert-base-uncased",                     #same model as was used in tokenization
+    num_labels=2                                   #2 possible outcomes
 )
 
 def compute_metrics(eval_pred):
