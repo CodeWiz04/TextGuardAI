@@ -140,25 +140,25 @@ def compute_metrics(eval_pred):            #calculate how well DistilBERT model 
     }
 
 training_args = TrainingArguments(
-    output_dir="./bert_results",
-    num_train_epochs=3,
+    output_dir="./bert_results",     #dir where results are stored
+    num_train_epochs=3,              
     learning_rate=2e-5,
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=16,
-    weight_decay=0.01,
-    eval_strategy="epoch",
-    save_strategy="epoch",
-    load_best_model_at_end=True,
+    per_device_train_batch_size=16, #16 training examples at a time(weight updation)
+    per_device_eval_batch_size=16,  
+    weight_decay=0.01,              #kind of regularization.Discourages the model from making its weights unnecessarily large and can help reduce overfitting
+    eval_strategy="epoch",          #After every epoch, evaluate the model
+    save_strategy="epoch",          #After each epoch, Hugging Face saves a checkpoint.Each checkpoint represents the model at a particular point during training.
+    load_best_model_at_end=True,    #after training finishes, the Trainer loads the best checkpoint, rather than simply leaving with the model from the final epoch.
     metric_for_best_model="f1",
-    greater_is_better=True,
-    logging_strategy="epoch",
-    report_to="none"
-)
-
+    greater_is_better=True,        #A larger F1 score means a better model
+    logging_strategy="epoch",      #log results after every epoch
+    report_to="none"               #Don't send training logs to an external reporting system
+) 
+#After defining the settings, create the actual Trainer
 trainer = Trainer(
     model=model,
-    args=training_args,
-    train_dataset=train_tokenized,
+    args=training_args,          #settings defined above
+    train_dataset=train_tokenized,#giving tokenized dataset as the training dataset
     eval_dataset=test_tokenized,
     compute_metrics=compute_metrics
 )
