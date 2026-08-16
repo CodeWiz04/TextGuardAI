@@ -118,16 +118,16 @@ model = AutoModelForSequenceClassification.from_pretrained(   #transformer model
     num_labels=2                                   #2 possible outcomes
 )
 
-def compute_metrics(eval_pred):
+def compute_metrics(eval_pred):            #calculate how well DistilBERT model performed during evaluation
     logits, labels = eval_pred
 
     predictions = logits.argmax(axis=-1)
 
-    precision, recall, f1, _ = precision_recall_fscore_support(
+    precision, recall, f1, _ = precision_recall_fscore_support( #metrics are calculated wrt spam
         labels,
         predictions,
-        average="binary",
-        zero_division=0
+        average="binary",              #binary classification problem
+        zero_division=0                #if 0/0 situation occurs(e.g., no positive predictions), it will return 0 for precision, recall, and F1 score instead of raising an error
     )
 
     accuracy = accuracy_score(labels, predictions)
