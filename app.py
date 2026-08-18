@@ -55,7 +55,7 @@ def predict_message(raw_text: str):
     with torch.no_grad():  # no gradient tracking needed at inference, saves memory/time
         outputs = model(**inputs)   #inputs = {"input_ids": ...,"attention_mask": ...} The ** simply unpacks the dictionary into keyword arguments
         logits = outputs.logits
-        probs = torch.softmax(logits, dim=-1).squeeze()
+        probs = torch.softmax(logits, dim=-1).squeeze() #for example if model returns [1,2] shape it converts into [2] which is easier to work with:[Ham probability, Spam probability]
 
     pred_class = int(torch.argmax(probs).item())
     confidence = float(probs[pred_class].item())
