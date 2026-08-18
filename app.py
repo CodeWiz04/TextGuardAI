@@ -57,8 +57,8 @@ def predict_message(raw_text: str):
         logits = outputs.logits
         probs = torch.softmax(logits, dim=-1).squeeze() #for example if model returns [1,2] shape it converts into [2] which is easier to work with:[Ham probability, Spam probability]
 
-    pred_class = int(torch.argmax(probs).item())
-    confidence = float(probs[pred_class].item())
+    pred_class = int(torch.argmax(probs).item()) #pytorch returns a tensor so .item converts into normal int
+    confidence = float(probs[pred_class].item()) #returns probability of predicted class
 
     return LABELS[pred_class], confidence
 
