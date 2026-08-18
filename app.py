@@ -75,7 +75,7 @@ def index():
         try:
             result_label, confidence = predict_message(submitted_text)
             confidence_pct = round(confidence * 100, 2)
-        except ValueError as e:
+        except ValueError as e:   #if no message was provided
             error = str(e)
         except Exception as e:
             # Catch-all so a bad request never shows the user a raw stack trace
