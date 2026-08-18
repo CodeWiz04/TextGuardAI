@@ -49,7 +49,7 @@ def clean_text(message):
     message=message.lower()
 
     #Remove Punctuation
-    message=message.translate(str.maketrans("","",string.punctuation))
+    message=message.translate(str.maketrans("","",string.punctuation)) #characters to replace,char to replace the with,chars to delete
     #Tokenize
     tokens=word_tokenize(message)
     #Remove stop_words and lemmatize
