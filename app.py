@@ -63,12 +63,12 @@ def predict_message(raw_text: str):
     return LABELS[pred_class], confidence
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])   #GET:user can open a webpage    POST:user can submit a message  for prediction
 def index():
-    result_label = None
-    confidence_pct = None
-    error = None
-    submitted_text = ""
+    result_label = None  #stores model prediction
+    confidence_pct = None #stores confidence
+    error = None          #stores error message
+    submitted_text = ""   #stores the message the user enters in a box
 
     if request.method == "POST":
         submitted_text = request.form.get("message", "")
